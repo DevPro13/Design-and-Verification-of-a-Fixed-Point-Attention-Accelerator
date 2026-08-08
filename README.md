@@ -3,7 +3,7 @@
 ```mermaid
 flowchart TD
     X["Token Embedding X"]
-    W["Weight Matrices Wq / Wk / Wv"]
+    W["Weight Matrices \n Wq / Wk / Wv"]
    
     Q["Query Vector Q = X × Wq"]
     K["Key Vector K = X × Wk"]
