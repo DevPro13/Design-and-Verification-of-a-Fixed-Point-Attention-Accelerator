@@ -2,11 +2,9 @@
 
 ```mermaid
 flowchart TD
-    X["Input Embedding X"]
-    WQ["Query Weight Matrix Wq"]
-    WK["Key Weight Matrix Wk"]
-    WV["Value Weight Matrix Wv"]
-
+    X["Token Embedding X"]
+    W["Weight Matrices Wq / Wk / Wv"]
+   
     Q["Query Vector Q = X × Wq"]
     K["Key Vector K = X × Wk"]
     V["Value Vector V = X × Wv"]
@@ -18,13 +16,13 @@ flowchart TD
     OUTPUT["Contextual Embedding Vector"]
 
     X --> Q
-    WQ --> Q
+    W --> Q
 
     X --> K
-    WK --> K
+    W --> K
 
     X --> V
-    WV --> V
+    W --> V
 
     Q --> SCORE
     K --> SCORE
