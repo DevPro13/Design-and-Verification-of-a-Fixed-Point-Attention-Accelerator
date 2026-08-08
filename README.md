@@ -1,6 +1,6 @@
 # Design and Verification of a Fixed-Point Attention Accelerator
 
-```mermaid
+```text
 flowchart TD
     X["Input Embedding X"]
     WQ["Query Weight Matrix Wq"]
