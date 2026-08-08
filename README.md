@@ -1,23 +1,38 @@
 # Design and Verification of a Fixed-Point Attention Accelerator
 
+```mermaid
 flowchart TD
-    X["Input Embeddings<br/>X"] --> Q["Query Projection<br/>Q = X × Wq"]
-    WQ["Query Weights<br/>Wq"] --> Q
+    X["Input Embedding X"]
+    WQ["Query Weight Matrix Wq"]
+    WK["Key Weight Matrix Wk"]
+    WV["Value Weight Matrix Wv"]
 
-    X --> K["Key Projection<br/>K = X × Wk"]
-    WK["Key Weights<br/>Wk"] --> K
+    Q["Query Vector Q = X × Wq"]
+    K["Key Vector K = X × Wk"]
+    V["Value Vector V = X × Wv"]
 
-    X --> V["Value Projection<br/>V = X × Wv"]
-    WV["Value Weights<br/>Wv"] --> V
+    SCORE["Attention Score = Q × Kᵀ"]
+    SCALE["Scaling = Score / √dk"]
+    SOFTMAX["Softmax"]
+    WEIGHTED["Weighted Sum = Attention × V"]
+    OUTPUT["Contextual Embedding Vector"]
 
-    Q --> S["Attention Score<br/>S = Q × Kᵀ"]
-    K --> S
+    X --> Q
+    WQ --> Q
 
-    S --> SC["Scaling<br/>S = S / √dk"]
+    X --> K
+    WK --> K
 
-    SC --> SM["Softmax<br/>A = softmax(S)"]
+    X --> V
+    WV --> V
 
-    SM --> WS["Weighted Sum<br/>O = A × V"]
-    V --> WS
+    Q --> SCORE
+    K --> SCORE
 
-    WS --> O["Contextual Embedding<br/>Output O"]
+    SCORE --> SCALE
+    SCALE --> SOFTMAX
+
+    SOFTMAX --> WEIGHTED
+    V --> WEIGHTED
+
+    WEIGHTED --> OUTPUT
