@@ -1,42 +1,25 @@
-module matrix_mul_weighted_embedding_vector #(
-    parameter int embedding_dim 4, 
-    parameter int token_size 18
+module matrix_mul#(
+    parameter int M1 , 
+    parameter int N1,
+    parameter int M2 , 
+    parameter int N2
     )(
-    input logic signed [15:0]matA [0:token_size-1][0:embedding_dim-1],
-    input logic signed [15:0]matB [0:embedding_dim-1][0:embedding_dim-1],
-    output logic signed [15:0]weighted_embedding_vector [0:token_size-1][0:embedding_dim-1]
+    input logic signed [15:0]matA [0:M1-1][0:N1-1],
+    input logic signed [15:0]matB [0:M2-1][0:N2-1],
+    output logic signed [15:0]result_matrix [0:M1-1][0:N2-1]
     );
-
+logic signed [31:0] accumulator;//to store matrix mult and sum result
+ int i,j,k;
 always_comb begin
-    int i,j,k;
-    
+    for(i=0;i<M1;++i)begin
+
+        for(j=0;j<N2;++j)begin
+            accumulator=32'sd0;
+            for(k=0;k<N1;++k) begin
+                accumulator+=matA[i][k]*matB[k][j];
+            end
+            result_matrix[i][j]=accumulator[15:0];//storing 16 bit result
+        end
+    end
 end
 endmodule
-
-// module matrix_mul_attention_score #(
-//     parameter int embedding_dim, 
-//     parameter int token_size
-//     )(
-//     input logic signed [15:0]matA [0:M-1][0:N-1],
-//     input logic signed [15:0]matB [0:M-1][0:N-1],
-//     input logic signed [15:0]attention_score_vector [0:M-1][0:M-1]
-//     );
-
-// always_comb begin
-    
-// end
-// endmodule
-
-// module matrix_mul_weighted_sum_vector #(
-//     parameter int embedding_dim, 
-//     parameter int token_size
-//     )(
-//     input logic signed [15:0]WeightedScoreVector [0:M-1][0:N-1],
-//     input logic signed [15:0]V [0:M-1][0:N-1],
-//     input logic signed [15:0]contextual_embedding_vector [0:M-1][0:M-1]
-//     );
-
-// always_comb begin
-    
-// end
-// endmodule
