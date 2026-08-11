@@ -1,4 +1,4 @@
-module mat_tx#(
+module matrix_transpose#(
     parameter int row,
     parameter int col
 )(
