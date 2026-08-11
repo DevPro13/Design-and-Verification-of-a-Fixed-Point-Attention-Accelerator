@@ -13,7 +13,6 @@ module attention_accelerator#(
        output logic signed [15:0] contextual_embedding_vector[0:tokensize-1][0:embedding_dim-1]//contexual vector after attention calculation
 );
 always_comb begin : attention_blk
-    
     logic signed [15:0]Q_vector[0:tokensize-1][0:embedding_dim-1];
     logic signed [15:0]K_vector[0:tokensize-1][0:embedding_dim-1];
     logic signed [15:0]K_vector_transpose[0:embedding_dim-1][0:tokensize-1];
@@ -54,7 +53,7 @@ always_comb begin : attention_blk
         .matB(Vw),
         .result_matrix(V_vector)
     );
-    
+
     matrix_transpose #(
         .row(tokensize),
         .col(embedding_dim)

@@ -11,7 +11,6 @@ logic signed [31:0] accumulator;//to store matrix mult and sum result
  int i,j,k;
 always_comb begin
     for(i=0;i<M1;++i)begin
-
         for(j=0;j<N2;++j)begin
             accumulator=32'sd0;
             for(k=0;k<N;++k) begin
