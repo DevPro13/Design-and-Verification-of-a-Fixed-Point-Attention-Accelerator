@@ -1,7 +1,3 @@
-`include "matrix_multiplication.sv"
-`include "matrix_transpose.sv"
-`include "scaling.sv"
-`include "softmax.sv"
 module attention_accelerator#(
     parameter int embedding_dim,
     parameter int  tokensize

@@ -5,11 +5,11 @@ module softmax#(
     input logic signed [15:0] vector[0:M-1][0:N-1],
     output logic signed [15:0] attention_weight_vector[0:M-1][0:N-1]
 );
-always_comb begin
-    int i,j;
-    real x_real;
-    real exp_values[M][N];
-    real exp_sum;
+int i,j;
+real x_real;
+real exp_values [0:M-1][0:N-1];
+real exp_sum;
+always @* begin
     for(i=0;i<M;++i)begin
         exp_sum = 0.0;
         for(j=0;j<N;++j)begin
