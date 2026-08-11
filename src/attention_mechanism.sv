@@ -1,7 +1,7 @@
-`include "./matrix_multiplication.sv"
-`include "./matrix_transpose.sv"
-`include "./scaling.sv"
-`include "./softmax.sv"
+`include "matrix_multiplication.sv"
+`include "matrix_transpose.sv"
+`include "scaling.sv"
+`include "softmax.sv"
 module attention_accelerator#(
     parameter int embedding_dim,
     parameter int  tokensize
@@ -12,7 +12,6 @@ module attention_accelerator#(
        input logic signed [15:0] Vw[0:embedding_dim-1][0:embedding_dim-1],//value weight matrix
        output logic signed [15:0] contextual_embedding_vector[0:tokensize-1][0:embedding_dim-1]//contexual vector after attention calculation
 );
-always_comb begin : attention_blk
     logic signed [15:0]Q_vector[0:tokensize-1][0:embedding_dim-1];
     logic signed [15:0]K_vector[0:tokensize-1][0:embedding_dim-1];
     logic signed [15:0]K_vector_transpose[0:embedding_dim-1][0:tokensize-1];
@@ -106,5 +105,4 @@ always_comb begin : attention_blk
         .matB(V_vector),
         .result_matrix(contextual_embedding_vector)
     );
-end
 endmodule
