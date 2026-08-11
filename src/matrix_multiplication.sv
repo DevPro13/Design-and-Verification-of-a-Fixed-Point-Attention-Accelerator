@@ -16,7 +16,7 @@ always_comb begin
             for(k=0;k<N;++k) begin
                 accumulator+=matA[i][k]*matB[k][j];
             end
-            result_matrix[i][j]=accumulator[15:0];//storing 16 bit result
+            result_matrix[i][j]=accumulator >>> 8;//convert Q16.16 result back to Q8.8
         end
     end
 end
