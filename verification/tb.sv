@@ -23,7 +23,10 @@ module attention_tb();
         .Vw(Vw),
         .contextual_embedding_vector(contextual_embedding_vector)
     );
-
+    initial begin
+        $dumpfile("verification/build/attention_mechanism.vcd");
+        $dumpvars(0, attention_tb);
+    end
     initial begin
         int file;
         real value;
