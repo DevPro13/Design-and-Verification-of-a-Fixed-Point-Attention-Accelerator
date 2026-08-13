@@ -8,40 +8,30 @@ The objective is to translate the mathematical operations of self-attention into
 ## Architecture
 
 ```mermaid
-flowchart TD
-    X["Token Embedding X"]
-    W["Weight Matrices \n Wq / Wk / Wv"]
-   
-    Q["Query Vector Q = X × Wq"]
-    K["Key Vector K = X × Wk"]
-    V["Value Vector V = X × Wv"]
-
-    SCORE["Attention Score = Q × Kᵀ"]
-    SCALE["Scaling = Score / √dk"]
-    SOFTMAX["Softmax"]
-    WEIGHTED["Weighted Sum = Attention × V"]
-    OUTPUT["Contextual Embedding Vector"]
-
-    X --> Q
-    W --> Q
-
-    X --> K
-    W --> K
-
-    X --> V
-    W --> V
-
-    Q --> SCORE
-    K --> SCORE
-
-    SCORE --> SCALE
-    SCALE --> SOFTMAX
-
-    SOFTMAX --> WEIGHTED
-    V --> WEIGHTED
-
-    WEIGHTED --> OUTPUT
-
+              Token Embedding X
+                      │
+          ┌───────────┼───────────┐
+          ▼           ▼           ▼
+        X × Wq      X × Wk      X × Wv
+          │           │           │
+          ▼           ▼           ▼
+          Q           K           V
+           \          /
+            \        /
+             ▼      ▼
+             Q × Kᵀ
+                │
+                ▼
+             Scaling
+                │
+                ▼
+             Softmax
+                │
+                ▼
+           Attention weight × V
+                │
+                ▼
+          Weighted Sum
 ```
 ## Attention Pipeline
 
