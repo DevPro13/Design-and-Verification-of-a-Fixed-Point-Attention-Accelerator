@@ -68,3 +68,14 @@ The SystemVerilog attention accelerator was compared against the Python referenc
 | Mean Absolute Error (MAE) | 0.00239167 |
 | Maximum Absolute Error | 0.00720000 |
 | Root Mean Squared Error (RMSE) | 0.00341986 |
+
+## Interpretation
+
+The SystemVerilog and Python outputs are very close but not identical. This is expected in a fixed-point implementation because quantization, truncation, rounding, and limited intermediate precision introduce numerical error.
+
+## Future Directions
+
+- **Improve numerical accuracy** — use higher/mixed precision and optimized rounding.
+- **Increase parallelism** — implement multiple MAC units for simultaneous computations.
+- **Pipeline the design** — overlap computation stages to reduce latency.
+- **Scale the accelerator** — support larger token sizes and embedding dimensions.
