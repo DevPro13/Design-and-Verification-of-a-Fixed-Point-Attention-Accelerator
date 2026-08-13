@@ -7,7 +7,7 @@ The objective is to translate the mathematical operations of self-attention into
 
 ## Architecture
 
-```mermaid
+```text
               Token Embedding X
                       │
           ┌───────────┼───────────┐
