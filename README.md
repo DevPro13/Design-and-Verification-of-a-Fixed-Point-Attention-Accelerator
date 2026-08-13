@@ -56,6 +56,7 @@ Q = X × Wq
 K = X × Wk
 
 V = X × Wv
+<br>
 Where,
 * X --> Token Embedding of M*N dimention
 * Wq,Wk,Wv--> Weight matrices or learning matrices of N*N dimention
