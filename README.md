@@ -58,3 +58,13 @@ Scaled Score = Score / √dk
 Attention probabilities = Softmax(Scaled Score)
 
 Contextual Embedding(Weighted Sum) = Attention probabilities × V
+
+## Error Analysis
+
+The SystemVerilog attention accelerator was compared against the Python reference implementation.
+
+| Error Metric | Value |
+|---|---:|
+| Mean Absolute Error (MAE) | 0.00239167 |
+| Maximum Absolute Error | 0.00720000 |
+| Root Mean Squared Error (RMSE) | 0.00341986 |
