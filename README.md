@@ -67,32 +67,3 @@ Scaled Score = Score / √dk
 Attention probabilities = Softmax(Scaled Score)
 
 Contextual Embedding(Weighted Sum) = Attention probabilities × V
-
-
-## Architecture
-
-```mermaid
-              Token Embedding X
-                      │
-          ┌───────────┼───────────┐
-          ▼           ▼           ▼
-        X × Wq      X × Wk      X × Wv
-          │           │           │
-          ▼           ▼           ▼
-          Q           K           V
-           \          /
-            \        /
-             ▼      ▼
-             Q × Kᵀ
-                │
-                ▼
-             Scaling
-                │
-                ▼
-             Softmax
-                │
-                ▼
-           Attention weight × V
-                │
-                ▼
-          Output Embedding
