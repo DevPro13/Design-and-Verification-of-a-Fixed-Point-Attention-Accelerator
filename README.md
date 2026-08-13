@@ -42,7 +42,7 @@ flowchart TD
 
     WEIGHTED --> OUTPUT
 
-
+```
 ## Attention Pipeline
 
 The accelerator implements the following pipeline:
