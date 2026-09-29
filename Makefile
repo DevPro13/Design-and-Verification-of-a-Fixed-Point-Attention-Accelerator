@@ -32,6 +32,7 @@ TB_CPP    = verification/sim_main.cpp
 
 SRC = \
 src/attention_mechanism.sv \
+src/memory.sv\
 src/matrix_multiplication.sv \
 src/matrix_transpose.sv \
 src/scaling.sv \
