@@ -7,12 +7,12 @@ module loadMem#(
     output logic signed [15:0] Qw[0:embedding_dim*embedding_dim-1],//query weight matrix
     output logic signed [15:0] Kw[0:embedding_dim*embedding_dim-1],//key weight matrix
     output logic signed [15:0] Vw[0:embedding_dim*embedding_dim-1],//value weight matrix 
-    output logic data_ready,
+    output logic data_ready
 );
-    logic signed [15:0] X[0:tokensize*embedding_dim-1],//embedding matrix
-    logic signed [15:0] wq[0:embedding_dim*embedding_dim-1],//query weight matrix
-    logic signed [15:0] wk[0:embedding_dim*embedding_dim-1],//key weight matrix
-    logic signed [15:0] wv[0:embedding_dim*embedding_dim-1],//value weight matrix 
+    logic signed [15:0] X[0:tokensize*embedding_dim-1];//embedding matrix
+    logic signed [15:0] wq[0:embedding_dim*embedding_dim-1];//query weight matrix
+    logic signed [15:0] wk[0:embedding_dim*embedding_dim-1];//key weight matrix
+    logic signed [15:0] wv[0:embedding_dim*embedding_dim-1];//value weight matrix 
 initial begin
     $readmemh("inputfiles/token_embedding_hex.txt",X);
     $readmemh("inputfiles/weight_q_hex.txt",wq);
@@ -21,8 +21,8 @@ initial begin
 end
 assign embedding_X=X;
 assign Qw=wq;
-assign Qk=wk;
-assign Qv=wv;
+assign Kw=wk;
+assign Vw=wv;
 
 always_ff @(posedge clk or posedge rst) begin : loadMem
     if(rst) 
