@@ -27,6 +27,7 @@ always_comb begin : mux3Block
                     MatSelectA[i][j] = Attention_wt[i][j];
         end
         default: ;
+    endcase
 end
 endmodule
 
@@ -53,14 +54,14 @@ always_comb begin : mux5Block
         3'd1: begin
             for (int i = 0; i < embedding_dim; i++)
                 for (int j = 0; j < embedding_dim; j++)
-                    MatSelectB[i][j] = wK[i][j];
+                    MatSelectB[i][j] = wk[i][j];
         end
         3'd2:begin
             for (int i = 0; i < embedding_dim; i++)
                 for (int j = 0; j < embedding_dim; j++)
                     MatSelectB[i][j] = wv[i][j];
         end
-        2'd3:begin
+        3'd3:begin
             for (int i = 0; i < embedding_dim; i++)
                 for (int j = 0; j < tokensize; j++)
                     MatSelectB[i][j] = K_Transpose[i][j];
@@ -71,6 +72,7 @@ always_comb begin : mux5Block
                     MatSelectB[i][j] = V_vector[i][j];
         end
         default: ;
+    endcase
 end
 endmodule
 
@@ -84,7 +86,8 @@ module demux5#(
     output logic signed [15:0]K_vector[0:tokensize-1][0:embedding_dim-1],
     output logic signed [15:0]V_vector[0:tokensize-1][0:embedding_dim-1],
     output logic signed [15:0]attention_score[0:tokensize-1][0:tokensize-1],
-    output logic signed [15:0] contextual_embedding_vector[0:tokensize-1][embedding_dim-1];
+    output logic signed [15:0] contextual_embedding_vector[0:tokensize-1][embedding_dim-1]
+);
     always_comb begin : resultSelectBlock
         case(selectLines)
         3'd0: begin
@@ -113,6 +116,7 @@ module demux5#(
                     contextual_embedding_vector[i][j] = MatResult[i][j];
         end
         default: ;
-    end
-);
+    endcase
+end
+endmodule
 
