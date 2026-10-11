@@ -12,14 +12,11 @@ integer max_value;
 integer difference;
 logic [31:0] exp_sum;
 logic [31:0] numerator;
-logic signed [15:0] exp_values[0:M-1][0:N-1];
-
-// real x_real;
-// real exp_values [0:M-1][0:N-1];
-// real exp_sum;
+//unsigned exponential values
+logic [15:0] exp_values[0:M-1][0:N-1];
 
 /*---------------LUT-------------------------------------------------------------------*/
-logic [15:0] TABLE [0:75] = '{
+localparam logic [15:0] TABLE [0:75] = '{
         /*step=0.1, start 0 and end -7.5*/
         /*Only numbers till -7.5 was used for Q8:8 due to its limited precision.
         In Q8.8, the LUT output rounds to zero at approximately \(x=-6.24\) and below,
