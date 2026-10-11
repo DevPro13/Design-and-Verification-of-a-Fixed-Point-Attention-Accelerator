@@ -9,20 +9,21 @@ module loadMem#(
     output logic signed [15:0] Vw[0:embedding_dim*embedding_dim-1],//value weight matrix 
     output logic data_ready
 );
-    logic signed [15:0] X[0:tokensize*embedding_dim-1];//embedding matrix
-    logic signed [15:0] wq[0:embedding_dim*embedding_dim-1];//query weight matrix
-    logic signed [15:0] wk[0:embedding_dim*embedding_dim-1];//key weight matrix
-    logic signed [15:0] wv[0:embedding_dim*embedding_dim-1];//value weight matrix 
+    // logic signed [15:0] X[0:tokensize*embedding_dim-1];//embedding matrix
+    // logic signed [15:0] wq[0:embedding_dim*embedding_dim-1];//query weight matrix
+    // logic signed [15:0] wk[0:embedding_dim*embedding_dim-1];//key weight matrix
+    // logic signed [15:0] wv[0:embedding_dim*embedding_dim-1];//value weight matrix 
 initial begin
-    $readmemh("inputfiles/token_embedding_hex.txt",X);
-    $readmemh("inputfiles/weight_q_hex.txt",wq);
-    $readmemh("inputfiles/weight_k_hex.txt",wk);
-    $readmemh("inputfiles/weight_v_hex.txt",wv);
+    $readmemh("inputfiles/token_embedding_hex.txt",embedding_X);
+    $readmemh("inputfiles/weight_q_hex.txt",Qw);
+    $readmemh("inputfiles/weight_k_hex.txt",Kw);
+    $readmemh("inputfiles/weight_v_hex.txt",Vw);
+    // assign data_ready=1'b1;
 end
-assign embedding_X=X;
-assign Qw=wq;
-assign Kw=wk;
-assign Vw=wv;
+// assign embedding_X=X;
+// assign Qw=wq;
+// assign Kw=wk;
+// assign Vw=wv;
 
 always_ff @(posedge clk or posedge rst) begin : loadMem
     if(rst) 

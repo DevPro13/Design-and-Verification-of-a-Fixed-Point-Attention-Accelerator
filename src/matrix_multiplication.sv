@@ -1,9 +1,11 @@
 module matrix_multiplication#(
     parameter int Dim
     )(
+    //input logic start,
     input logic signed [15:0]matA [0:Dim-1][0:Dim-1],
     input logic signed [15:0]matB [0:Dim-1][0:Dim-1],
     output logic signed [15:0]result_matrix [0:Dim-1][0:Dim-1]
+    //output logic complete
     );
 logic signed [31:0] accumulator;//to store matrix mult and sum result
  int i,j,k;
@@ -14,7 +16,8 @@ always_comb begin
             for(k=0;k<Dim;++k) begin
                 accumulator+=matA[i][k]*matB[k][j];
             end
-            result_matrix[i][j]=accumulator >>> 8;//ignoring 8 LSB bits fractional part
+            // result_matrix[i][j]=accumulator[ >>> 8];//ignoring 8 LSB bits fractional part
+            result_matrix[i][j]=accumulator[23:8];
         end
     end
 end
